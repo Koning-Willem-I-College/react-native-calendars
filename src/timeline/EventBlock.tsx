@@ -9,6 +9,8 @@ export interface Event {
   title: string;
   summary?: string;
   color?: string;
+  borderColor?:string;
+  textColor?:string;
 }
 
 export interface PackedEvent extends Event {
@@ -48,7 +50,11 @@ const EventBlock = (props: EventBlockProps) => {
       backgroundColor: event.color ? event.color : EVENT_DEFAULT_COLOR
     };
   }, [event]);
-
+  const eventTextStyle = useMemo(() => {
+        return {
+           color:event.textColor? event.textColor : '#000000'
+        };
+    }, [event]);
   const _onPress = useCallback(() => {
     onPress(index);
   }, [index, onPress]);
@@ -59,19 +65,9 @@ const EventBlock = (props: EventBlockProps) => {
         renderEvent(event)
       ) : (
         <View>
-          <Text numberOfLines={1} style={styles.eventTitle}>
+          <Text style={[styles.eventTitle, eventTextStyle]}>
             {event.title || 'Event'}
           </Text>
-          {numberOfLines > 1 ? (
-            <Text numberOfLines={numberOfLines - 1} style={[styles.eventSummary]}>
-              {event.summary || ' '}
-            </Text>
-          ) : null}
-          {numberOfLines > 2 ? (
-            <Text style={styles.eventTimes} numberOfLines={1}>
-              {new XDate(event.start).toString(formatTime)} - {new XDate(event.end).toString(formatTime)}
-            </Text>
-          ) : null}
         </View>
       )}
     </TouchableOpacity>

@@ -77,3 +77,8 @@ ios/Podfile.lock
 
 # testing
 /coverage
+/.vs/react-native-calendars/v17
+/.vs/react-native-calendars/FileContentIndex/71b9822b-05ff-4a76-97c4-e2ab5bfc6fb6.vsidx
+*.vsidx
+/.vs/slnx.sqlite
+/.vs

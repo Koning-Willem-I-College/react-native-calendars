@@ -47,7 +47,10 @@ const EventBlock = (props: EventBlockProps) => {
       height: event.height,
       width: event.width,
       top: event.top,
-      backgroundColor: event.color ? event.color : EVENT_DEFAULT_COLOR
+      backgroundColor: event.color ? event.color : EVENT_DEFAULT_COLOR,
+      borderColor: event.borderColor? event.borderColor:undefined,
+      borderWidth: event.borderColor? 1:0,
+      borderRadius:4
     };
   }, [event]);
   const eventTextStyle = useMemo(() => {
